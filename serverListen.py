@@ -1,3 +1,9 @@
+# Author Francisco Aguirre DNI: 36705359
+# Modified Francisco Bosco
+# UNNE - Catedra Redes de Datos
+# Lic. En Sistemas de Informacion
+# Corrientes Argentina 
+
 import socket
 import time
 import threading
@@ -84,7 +90,7 @@ class serverListen(Thread):
                   #Cuando aparece un cliente se realiza la conexion y se captura los datos del cliente.
                   #El meto accep de mySocket devuelve la IP y el puerto
                   self.connectionSocket, self.dataClient = self.mySocket.accept()
-                  print('ip'+str(self.dataClient))
+                  print('Este es el Socket del cliente'+str(self.dataClient) + "\n\n" )
 
                   #Se instancia un objeto cliente que iniciara en un nuevo hilo
                   serverReponse = serverResponse(self.connectionSocket, self.dataClient, self)
@@ -93,6 +99,7 @@ class serverListen(Thread):
                   time.sleep(2)
 
                   #confirmamos conexion y damos la bienvenida
+                  #Este metodo se encuentra en la clase serverResponse
                   serverReponse.msj_bienvenida()
         
                   #Iniciamos el hilo serverResponse(objeto) que va a atender al cliente que se conecto
@@ -120,7 +127,7 @@ while True:
             portServer = int(input("Ingrese el puerto a escuchar: "))
 
             #Le indicamos al Sistema Operativo que vamos a atender conexiones por este puerto.
-            serverSocket.bind(("localhost",portServer))
+            serverSocket.bind(("192.168.200.60",portServer))
 
             #Se establece la conexion y se empieza a escuchar en el puerto correspondiente, como parametro,
             #el nro de conexiones en espera de manera simultanea.

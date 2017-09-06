@@ -6,7 +6,7 @@ from os import curdir, sep
 
 class serverResponse(Thread): #Heredamos comportamiento de la clase Thread
 
-      bienvenida = "    A - BIENVENIDO, ESPERO REQUEST ****" 
+      bienvenida = " **** A - BIENVENIDO, ESPERO REQUEST **** \n **** Redes de Datos v1.0 ****  " 
       
 
       #Metodo constructor de la clase
@@ -24,7 +24,7 @@ class serverResponse(Thread): #Heredamos comportamiento de la clase Thread
             self.method_list = ['GET', 'POST', 'HEAD', 'OPTION']
             self.version_http_supported = ['HTTP/1.0','HTTP/1.1']
 
-            self.status_dic = {400 : 'ERROR 400 - Bad Request : Solicitud con sintaxis errónea', \
+            self.status_dic = {400 : 'ERROR 500 - Bad Request : Solicitud con sintaxis errónea', \
             404 : 'ERROR 404 -  Not Found: Recurso no encontrado', \
             200 : '200 - OK'}
 
@@ -150,7 +150,7 @@ class serverResponse(Thread): #Heredamos comportamiento de la clase Thread
       def contar_palabras(self, p_string):
             return len(p_string.split(' '))
 
-      #end contar_palabras
+      #end contar_palabras, segundo parametro es la posicion de la palabra
 
       def obtener_palabra(self, p_string, p_nro_palabra):
             return p_string.strip().split(' ')[p_nro_palabra]
@@ -185,6 +185,7 @@ class serverResponse(Thread): #Heredamos comportamiento de la clase Thread
                   try:
                         
                         #Esperamos request del cliente, quita espacio con strip
+                        #Queda esperando el servidor
                         request = self.recv().strip()
 
                         #Verificamos el nro de palabras en la solicitud
